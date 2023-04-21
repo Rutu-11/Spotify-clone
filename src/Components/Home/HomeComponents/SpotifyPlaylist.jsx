@@ -19,33 +19,49 @@ function SpotifyPlaylist({ artist, heading, setPlaySong }) {
 
   const handleToggle = () => setShow(!show);
 
-  const getSongs = (artist) => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "f0d9fa046cmsh6df55b1f1af7fe2p15efc9jsn9790aeeb6432",
-        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-      },
-    };
-    fetch(
-      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}`,
-      options
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        const arr = response.data;
-        let artist_Id_Arr = [];
-        setData(response.data);
+  const getSongs=(artist)=>{
+    fetch(`https://clumsy-toad-hose.cyclic.app/search?q=${artist}`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((response) => {
+      setData(response.data);
+      
+    })
+    .catch((e) => {
+      console.log(e.message);
+    });
+  }
+  // const getSongs = (artist) => {
+  //   // const options = {
+  //   //   method: "GET",
+  //   //   headers: {
+  //   //     "X-RapidAPI-Key": "f0d9fa046cmsh6df55b1f1af7fe2p15efc9jsn9790aeeb6432",
+  //   //     "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+  //   //   },
+  //   // };
+  //   fetch(
+  //     `https://gleaming-lamb-cape.cyclic.app/search?q=${artist}`
+  //     // options
+  //   )
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((response) => {
+
+  //       const arr = response.data;
+       
+  //       let artist_Id_Arr = [];
+  //       setData(response.data);
         
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  };
+  //     })
+  //     .catch((e) => {
+  //       console.log(e.message);
+  //     });
+  // };
 
   useEffect(() => {
+    console.log(data)
     getSongs(artist);
   }, [useSelector, dispatch, artist]);
 

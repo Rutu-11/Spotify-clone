@@ -38,11 +38,11 @@ let names = [
   "Kishor Kumar",
   "Shreya Ghoshal",
   "Malayalam",
-  "Marathi",
+  "Neha Kakkar",
   "Arjit Singh",
   "Badshah",
   "A.R. Rahman",
-  "Pritom",
+  "Pritam",
 ];
 let imageUrl = [
   "https://e-cdns-images.dzcdn.net/images/cover/6ec620d4f40e42115afefa8f0bffcc8e/1000x1000-000000-80-0-0.jpg",
@@ -53,7 +53,7 @@ let imageUrl = [
   "https://e-cdns-images.dzcdn.net/images/cover/4e8548d869896d1261f0212820b38e01/1000x1000-000000-80-0-0.jpg",
   "https://e-cdns-images.dzcdn.net/images/cover/294c32de03377edae31cd8bb094aab80/1000x1000-000000-80-0-0.jpg",
   "https://e-cdns-images.dzcdn.net/images/cover/c7cb0fc0a8858d7b4175ffde1125704d/1000x1000-000000-80-0-0.jpg",
-  "https://e-cdns-images.dzcdn.net/images/cover/52dfd93751201760102b0b4d0ce01e9c/1000x1000-000000-80-0-0.jpg",
+  "https://e-cdns-images.dzcdn.net/images/cover/475cefb68c19c8e7dbf7f9b45b589fff/1000x1000-000000-80-0-0.jpg",
   "https://e-cdns-images.dzcdn.net/images/artist/f9bebdebb6db8441a126b5f2fb0c85d4/1000x1000-000000-80-0-0.jpg",
   "https://e-cdns-images.dzcdn.net/images/cover/af04edb2042b705632a9e144d86dba7a/1000x1000-000000-80-0-0.jpg",
   "https://e-cdns-images.dzcdn.net/images/artist/bd34315ef977a62a9e28c1ab19bb8ac4/1000x1000-000000-80-0-0.jpg",

@@ -52,19 +52,22 @@ function Navbar({ bgColor }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  
   const getSongBySearch = (e) => {
     const key = e.code;
     if (key == "Enter") {
       dispatch(PlayListAction(search));
     }
   };
-  const useDetails = JSON.parse(localStorage.getItem("userDetail"));
-
+  const {name, email, picture} = JSON.parse(localStorage.getItem("userDetail"))|| {}
+  const flag = localStorage.getItem("flag") || false;
+console.log(name,email,picture,"888")
   const SearchFlag = localStorage.getItem("SearchFlag");
 
   const { colorMode, toggleColorMode } = useColorMode()
   const bg = useColorModeValue('#ffff', '#000000')
   const color = useColorModeValue('white', '#b3b3b3')
+
   function  downloadApp () {
     const link = document.createElement("a");
     link.download = "spotifyAppDownload.exe";
@@ -74,6 +77,43 @@ function Navbar({ bgColor }) {
     document.body.removeChild(link);
     console.log("called");
   };
+
+  // function logout(){
+  //   const {email} = localStorage.getItem('userDetail')
+  //   localStorage.removeItem("userDetail")
+  //   fetch("https://clumsy-toad-hose.cyclic.app/logout", {
+  //     method: "DELETE",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({email}),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       // localStorage.removeItem("userDetail");
+  //       // localStorage.removeItem("flag");
+  //       navigate("/");
+  //       dispatch({type:"LOGOUT_USER"})
+        
+       
+  //     });
+  // }
+  function logout(){
+    const { email, user_id } = localStorage.getItem('userDetail');
+    localStorage.removeItem("userDetail");
+    localStorage.removeItem("flag");
+    localStorage.removeItem("token");
+    navigate("/");
+    fetch("https://clumsy-toad-hose.cyclic.app/logout", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, user_id }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        dispatch({type:"LOGOUT_USER"});
+       
+      });
+  }
+
   return (
     <>
       <Flex
@@ -143,7 +183,7 @@ function Navbar({ bgColor }) {
         <Spacer />
 
 
-        {useDetails != null ? (
+        {name != null ? (
           <>
             <Link to="/upgrade">
               <Button
@@ -183,8 +223,8 @@ function Navbar({ bgColor }) {
               <Image className={styles.image}
                 borderRadius="full"
                 boxSize="40px"
-                src={useDetails[0].picture}
-                alt={useDetails[0].name}
+                src={flag ? picture :`https://tse2.mm.bing.net/th?id=OIP.Z306v3XdxhOaxBFGfHku7wHaHw&pid=Api&P=0`}
+                alt={name}            
                 onMouseOver={onToggle}
                 onMouseOut={onToggle}
                 onClick={onOpen}
@@ -197,7 +237,7 @@ function Navbar({ bgColor }) {
                 mr={1}
                 display={["none", "none", "flex", "flex", "flex"]}
               >
-                {useDetails[0].name}
+                {name}
               </Text>
 
               <Box>
@@ -285,9 +325,7 @@ function Navbar({ bgColor }) {
                           icon={<FaPowerOff size={18} />}
                           bg="black"
                           onClick={() => {
-                            dispatch({type:"LOGOUT_USER"})
-                            localStorage.removeItem("userDetail");
-                            navigate("/");
+                            logout();
                           }}
                         >
                           Log out
@@ -304,7 +342,7 @@ function Navbar({ bgColor }) {
                   mt={"100px"}
                   ml="-110px"
                 >
-                  {useDetails[0].given_name}
+                  {name}
                 </Button>
               </Fade>
             </Flex>

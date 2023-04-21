@@ -22,9 +22,20 @@ import Account from "./Components/Accounts/Accounts";
 import PrivateLogin from "./Components/CommonComponents/Routes/PrivateLogin";
 import LyricsData from "./Lyrics/LyricsData";
 import { NotPremium } from "./Lyrics/NotPremium";
-
+import {useEffect} from 'react'
+import {gapi} from 'gapi-script'
+const clientId = "619667535332-hnpndj658ttkq6p50hfn3age6f9m23uq.apps.googleusercontent.com"
 function App() {
   const location = useLocation();
+  // useEffect(()=>{
+  //   function start(){
+  //     gapi.client.init({
+  //       clientId:clientId,
+  //     scope:""
+  //     })
+  //   }
+  //   gapi.load('client:auth2',start)
+  // },[])
   return (
     <div className="App">
       <AnimatePresence mode="wait">

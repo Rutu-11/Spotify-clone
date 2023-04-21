@@ -26,11 +26,12 @@ const Home = () => {
       
         <Navbar bgColor="black" />
         <AnimatedPages>
-        <SpotifyPlaylist artist={'Arjit Singh'} heading={"Arjit Singh"} setPlaySong={setPlaySong} />
-        <SuggestedArtists setPlaySong={setPlaySong}/>
         <SpotifyPlaylist artist={'Shreya Ghoshal'} heading={"Shreya Ghoshal"} setPlaySong={setPlaySong}/>
+        <SuggestedArtists setPlaySong={setPlaySong}/>
+        
         <SpotifyPlaylist artist={'Badshah'} heading={"Badshah"} setPlaySong={setPlaySong} />
         
+        <SpotifyPlaylist artist={'Pritam'} heading={"Pritam"} setPlaySong={setPlaySong} />
         </AnimatedPages>
         <Sidebar />
         
