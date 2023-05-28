@@ -70,8 +70,9 @@ const Login = () => {
           });
         }
 
-        // navigate('/')
+        
       });
+      navigate('/')
   };
 
   // function getList(e){

@@ -94,38 +94,39 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(signUp);
-    fetch("https://clumsy-toad-hose.cyclic.app/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(signUp),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if(res.user){
-          localStorage.setItem("userDetail", JSON.stringify(res.user));
-          toast({
-            title: 'Login Successful',
-            description: "redirected to login",
-            status: 'success',
-            duration: 2000,
-            isClosable: true,
-            position: 'top',
-        })
+    localStorage.setItem("userDetail", JSON.stringify(signUp));
+    // fetch("https://clumsy-toad-hose.cyclic.app/signup", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(signUp),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     if(res.user){
+    //       localStorage.setItem("userDetail", JSON.stringify(res.user));
+    //       toast({
+    //         title: 'Login Successful',
+    //         description: "redirected to login",
+    //         status: 'success',
+    //         duration: 2000,
+    //         isClosable: true,
+    //         position: 'top',
+    //     })
         navigate("/login");
-        console.log(res);
-        }
-        else{
-          toast({
-                    title: 'Something went wrong',
-                    description: "User Already exists",
-                    status: 'error',
-                    duration: 3000,
-                    isClosable: true,
-                    position: 'top',
-                })
-        }
+    //     console.log(res);
+    //     }
+    //     else{
+    //       toast({
+    //                 title: 'Something went wrong',
+    //                 description: "User Already exists",
+    //                 status: 'error',
+    //                 duration: 3000,
+    //                 isClosable: true,
+    //                 position: 'top',
+    //             })
+    //     }
         
-      });
+    //   });
 
     setSignup({
       email: "",
@@ -134,6 +135,7 @@ function Signup() {
     });
   };
 
+  
   // const onSuccess =(res)=>{
   //     console.log("LOGIN SUCCESS! res",res.profileObj )
   //     localStorage.setItem("userDetail", JSON.stringify(res.profileObj))

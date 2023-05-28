@@ -11,6 +11,7 @@ import {
 import style from "./SpotifyPlaylist.module.css";
 import CardCom from "../../CommonComponents/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
+import PlayListAction from "../../../Redux/SpotifyPlayList/PlayListAction";
 
 function SpotifyPlaylist({ artist, heading, setPlaySong }) {
   const dispatch = useDispatch();
@@ -18,19 +19,23 @@ function SpotifyPlaylist({ artist, heading, setPlaySong }) {
   const [show, setShow] = React.useState(false);
 
   const handleToggle = () => setShow(!show);
-
+  const songlist = useSelector((store) => {
+    return store.playListReducer.songs;
+  });
   const getSongs=(artist)=>{
-    fetch(`https://clumsy-toad-hose.cyclic.app/search?q=${artist}`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((response) => {
-      setData(response.data);
+    dispatch(PlayListAction(artist));
+    setData(songlist)
+    // fetch(`https://clumsy-toad-hose.cyclic.app/search?q=${artist}`)
+    // .then((response) => {
+    //   return response.json();
+    // })
+    // .then((response) => {
+    //   setData(response.data);
       
-    })
-    .catch((e) => {
-      console.log(e.message);
-    });
+    // })
+    // .catch((e) => {
+    //   console.log(e.message);
+    // });
   }
   // const getSongs = (artist) => {
   //   // const options = {
