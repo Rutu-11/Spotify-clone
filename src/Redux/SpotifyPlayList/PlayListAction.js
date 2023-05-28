@@ -14,7 +14,7 @@ function PlayListAction(singer) {
                 return (response.json())
             })
             .then((response) => {
-              console.log("ress", response)
+              // console.log("ress", response.data)
               return dispatch(getSongData(response.data));
               
             })
