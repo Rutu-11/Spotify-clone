@@ -11,51 +11,43 @@ import {
 import style from "./SpotifyPlaylist.module.css";
 import CardCom from "../../CommonComponents/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import PlayListAction from "../../../Redux/SpotifyPlayList/PlayListAction";
 
 function SpotifyPlaylist({ artist, heading, setPlaySong }) {
   const dispatch = useDispatch();
-  // const [data, setData] = React.useState([]);
+  const [data, setData] = React.useState([]);
   const [show, setShow] = React.useState(false);
 
   const handleToggle = () => setShow(!show);
 
-  const data = useSelector((store) => {
-    return store.playListReducer.songs;
-  });
+  const getSongs = (artist) => {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "f0d9fa046cmsh6df55b1f1af7fe2p15efc9jsn9790aeeb6432",
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      },
+    };
+    fetch(
+      `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artist}`,
+      options
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        const arr = response.data;
+        let artist_Id_Arr = [];
+        setData(response.data);
+        
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   useEffect(() => {
-    dispatch(PlayListAction(artist));
-  }, [useSelector, dispatch, artist]);
-
-
-  // const songlist = useSelector((store) => {
-  //   return store.playListReducer.songs;
-  // });
-  // const getSongs=(artist)=>{
-  //   dispatch(PlayListAction(artist));
-  //   setData(songlist)
-    // fetch(`https://clumsy-toad-hose.cyclic.app/search?q=${artist}`)
-    // .then((response) => {
-    //   return response.json();
-    // })
-    // .then((response) => {
-    //   setData(response.data);
-      
-    // })
-    // .catch((e) => {
-    //   console.log(e.message);
-    // });
-  // }
- 
-
-  // useEffect(() => {
-  //   dispatch(PlayListAction(artist));
-  //   setData(songlist)
-  //   console.log('homeata',data)
-  //   // getSongs(artist);
-  // }, [useSelector, dispatch, artist]);
-
+    getSongs(artist);
+  }, [useSelector, dispatch, artist,setData]);
 
 
   return data?.length > 0 ? (
@@ -91,6 +83,8 @@ function SpotifyPlaylist({ artist, heading, setPlaySong }) {
           gap="20px"
         >
           {data.map((ele, index) => {
+            
+// console.log('datatt',data)
             return <CardCom key={index} prop={ele} setPlaySong={setPlaySong} />;
           })}
         </Grid>
