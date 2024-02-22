@@ -2,7 +2,7 @@
 
  Are you a music enthusiast who loves listening to your favorite tracks on Spotify? If yes, then you’re in for a treat! Recently, our team collaborated on building a Spotify clone using the latest tech stacks. We wanted to create an application that not only replicates the functionality of Spotify but also adds some cool new features that users would love. Our Spotify clone has a dynamic homepage, search page, lyrics-library page, create playlist page, and liked song page, making it a complete music experience.
 
-### Live: [https://spotify-clone4me.netlify.app/](https://spotify-clone-1s.netlify.app/)
+### Live: https://spotify-clone-1s.netlify.app/
 
 
 <div style="display: flex;">
